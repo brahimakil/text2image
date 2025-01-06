@@ -4,6 +4,8 @@ const loadingContainer = document.getElementById('loadingContainer');
 const progressFill = document.getElementById('progressFill');
 const loadingText = document.getElementById('loadingText');
 const resultImage = document.getElementById('resultImage');
+const downloadContainer = document.getElementById('downloadContainer');
+const downloadBtn = document.getElementById('downloadBtn');
 
 const loadingMessages = [
 	"Gathering creative inspiration...",
@@ -88,6 +90,15 @@ function addWatermark() {
 	});
 }
 
+function downloadImage(imageUrl, promptText) {
+	const link = document.createElement('a');
+	link.href = imageUrl;
+	link.download = `AI-Generated-${promptText.slice(0, 30)}-${Date.now()}.png`;
+	document.body.appendChild(link);
+	link.click();
+	document.body.removeChild(link);
+}
+
 generateBtn.addEventListener('click', async () => {
 	const prompt = promptInput.value.trim();
 	
@@ -114,12 +125,16 @@ generateBtn.addEventListener('click', async () => {
 			resultImage.onload = () => {
 				loadingContainer.classList.add('hidden');
 				resultImage.classList.remove('hidden');
+				downloadBtn.classList.remove('hidden');
 			};
 			resultImage.src = imageUrl;
+			
+			downloadBtn.onclick = () => downloadImage(imageUrl, prompt);
 		}, 500);
 	} catch (error) {
 		alert('Error generating image: ' + error.message);
 		loadingContainer.classList.add('hidden');
+		downloadBtn.classList.add('hidden');
 	} finally {
 		generateBtn.disabled = false;
 	}
