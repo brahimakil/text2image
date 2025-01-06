@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Image Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-robot"></i> AI Image Generator</h1>
+        <div class="input-container">
+            <textarea id="promptInput" placeholder="Describe the image you want to create..."></textarea>
+            <button id="generateBtn">
+                <i class="fas fa-wand-magic-sparkles"></i> Generate
+            </button>
+        </div>
+        <div class="image-container">
+            <div id="loadingContainer" class="hidden">
+                <div class="progress-bar">
+                    <div id="progressFill"></div>
+                </div>
+                <div id="loadingText">Generating your masterpiece...</div>
+            </div>
+            <img id="resultImage" class="hidden" alt="Generated image">
+        </div>
+    </div>
+    <div id="watermark"></div>
+    <script src="script.js"></script>
+</body>
+</html> 
